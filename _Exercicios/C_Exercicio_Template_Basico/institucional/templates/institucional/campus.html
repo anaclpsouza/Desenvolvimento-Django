@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Informações do Campus</title>
+</head>
+<body>
+    <nav>
+        <a href="{% url 'institucional:index' %}">Início</a> |
+        <a href="{% url 'institucional:info_campus' %}">Campus</a> |
+        <a href="{% url 'institucional:perfil_aluno' %}">Aluno</a> |
+        <a href="{% url 'institucional:lista_cursos' %}">Cursos</a>
+    </nav>
+    <hr>
+    <h1>Dados do Campus</h1>
+    <ul>
+        <li>Nome: {{ campus.nome|title }}</li>
+        <li>Cidade: {{ campus.cidade|title }}</li>
+        <li>Estado: {{ campus.estado|upper }}</li>
+        <li>Diretor: {{ campus.diretor|default:"Direção Geral (Em Vacância)" }}</li>
+        <li>Ano de Fundação: {{ campus.ano_fundacao }}</li>
+        <li>Orçamento Anual: R$ {{ campus.orcamento_anual|floatformat:'2g' }}</li>
+    </ul>
+</body>
+</html>

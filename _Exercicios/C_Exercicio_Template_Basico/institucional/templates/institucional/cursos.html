@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Cursos</title>
+</head>
+<body>
+    <nav>
+        <a href="{% url 'institucional:index' %}">Início</a> |
+        <a href="{% url 'institucional:info_campus' %}">Campus</a> |
+        <a href="{% url 'institucional:perfil_aluno' %}">Aluno</a> |
+        <a href="{% url 'institucional:lista_cursos' %}">Cursos</a>
+    </nav>
+    <hr>
+    <h1>Cursos Disponíveis</h1>
+    <p>Total: {{ total_cursos }} curso{{ total_cursos|pluralize }}</p>
+
+    {% for curso in cursos %}
+        <div style="margin-bottom: 16px;">
+            <h3>{{ curso.nome|capfirst }}</h3>
+            <ul>
+                <li>Carga Horária: {{ curso.carga_horaria|floatformat:1 }} horas</li>
+                <li>Vagas: {{ curso.vagas }} vaga{{ curso.vagas|pluralize }}</li>
+                <li>
+                    Status:
+                    {% if curso.ativo and curso.vagas > 0 %}
+                        Inscrições Abertas
+                    {% elif curso.vagas == 0 %}
+                        Turma Lotada
+                    {% else %}
+                        {{ curso.status }}
+                    {% endif %}
+                </li>
+                <li>Ementa: {{ curso.ementa|truncatewords:6 }}</li>
+            </ul>
+        </div>
+    {% empty %}
+        <p>Nenhum curso cadastrado.</p>
+    {% endfor %}
+
+    <hr>
+    <h2>Simular Matrícula</h2>
+    <form action="{% url 'institucional:lista_cursos' %}" method="POST">
+        {% csrf_token %}
+        <label for="codigo">Código da Disciplina:</label>
+        <input type="text" id="codigo" name="codigo" placeholder="Ex: BSI001">
+        <button type="submit">Simular Matrícula</button>
+    </form>
+
+    {% if codigo_simulado %}
+        <p>Matrícula simulada para o código: <strong>{{ codigo_simulado }}</strong></p>
+    {% endif %}
+</body>
+</html>

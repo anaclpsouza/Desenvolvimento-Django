@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perfil do Aluno</title>
+</head>
+<body>
+    <nav>
+        <a href="{% url 'institucional:index' %}">Início</a> |
+        <a href="{% url 'institucional:info_campus' %}">Campus</a> |
+        <a href="{% url 'institucional:perfil_aluno' %}">Aluno</a> |
+        <a href="{% url 'institucional:lista_cursos' %}">Cursos</a>
+    </nav>
+    <hr>
+    <h1>Perfil do Aluno</h1>
+    <ul>
+        <li>Nome: {{ aluno.nome|title }}</li>
+        <li>Matrícula: {{ aluno.matricula }}</li>
+        <li>Curso: {{ aluno.curso.nome|upper }} ({{ aluno.curso.codigo }})</li>
+        <li><b>Avaliação 01:</b> {{ aluno.notas.0|floatformat:1 }}</li>
+        <li><b>Avaliação 02:</b> {{ aluno.notas.1|floatformat:1 }}</li>
+        <li><b>Avaliação 03:</b> {{ aluno.notas.2|floatformat:1 }}</li>
+        <li>Email: {{ aluno.contato.email }}</li>
+        <li>Cidade: {{ aluno.contato.cidade|title }}</li>
+    </ul>
+</body>
+</html>

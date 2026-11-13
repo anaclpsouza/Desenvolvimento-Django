@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ titulo_pagina }}</title>
+</head>
+<body>
+    <nav>
+        <a href="{% url 'institucional:index' %}">Início</a> |
+        <a href="{% url 'institucional:info_campus' %}">Campus</a> |
+        <a href="{% url 'institucional:perfil_aluno' %}">Aluno</a> |
+        <a href="{% url 'institucional:lista_cursos' %}">Cursos</a>
+    </nav>
+    <hr>
+    <h1>Aplicação Institucional</h1>
+    <h2>Olá, {{ nome_usuario|capfirst }}</h2>
+    <p>Matriculado em {{ nome_curso|upper }}</p>
+    <p>Acesso em {% now "d/m/Y" %} às {% now "H:i:s" %}</p>
+</body>
+</html>
