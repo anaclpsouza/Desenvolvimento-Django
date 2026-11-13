@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block titulo %}Lista de Produtos{% endblock %}
+
+{% block cabecalho %}Produtos Disponíveis{% endblock %}
+
+{% block conteudo %}
+    <p class="mb-3">
+        Total de {{ total_produtos }} produto{{ total_produtos|pluralize }} cadastrado{{ total_produtos|pluralize }}.
+    </p>
+
+    <ul class="list-group">
+        {% for p in produtos %}
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+                <div>
+                    <a href="{% url 'produtos:produto' p.id %}" class="fw-bold text-decoration-none">
+                        {{ p.nome|title }}
+                    </a>
+                </div>
+                <span class="badge bg-primary rounded-pill">R$ {{ p.preco|floatformat:'2g' }}</span>
+            </li>
+        {% empty %}
+            <li class="list-group-item">Nenhum produto cadastrado.</li>
+        {% endfor %}
+    </ul>
+{% endblock %}

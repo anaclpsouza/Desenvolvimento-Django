@@ -1,0 +1,25 @@
+{% load static %}
+{% load bootstrap5 %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block titulo %}Loja{% endblock %}</title>
+    {% bootstrap_css %}
+    <link rel="stylesheet" href="{% static 'css/estilo.css' %}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>{% block cabecalho %}Catálogo de Produtos{% endblock %}</h1>
+            <small class="text-muted">Acessado em {% now "d/m/Y H:i:s" %}</small>
+        </header>
+
+        <main>
+            {% block conteudo %}{% endblock %}
+        </main>
+    </div>
+    {% bootstrap_javascript %}
+</body>
+</html>
