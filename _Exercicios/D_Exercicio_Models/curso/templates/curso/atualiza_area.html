@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block titulo %}Atualizar Área{% endblock %}
+
+{% block conteudo %}
+    <h1 class="mb-3">Atualizar Área</h1>
+
+    <form method="POST">
+        {% csrf_token %}
+        <div class="mb-3">
+            <label for="nome" class="form-label">Nome:</label>
+            <input type="text" id="nome" name="nome" value="{{ area.nome }}" maxlength="100" class="form-control" required>
+        </div>
+        <div class="mb-3">
+            <label for="descricao" class="form-label">Descrição:</label>
+            <textarea id="descricao" name="descricao" class="form-control" rows="3">{{ area.descricao|default_if_none:"" }}</textarea>
+        </div>
+        <div class="mb-3 form-check">
+            <input type="checkbox" id="ativa" name="ativa" class="form-check-input" {% if area.ativa %}checked{% endif %}>
+            <label for="ativa" class="form-check-label">Ativa</label>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Salvar Alterações</button>
+        <a href="{% url 'curso:lista_area' %}" class="btn btn-secondary">Voltar</a>
+    </form>
+{% endblock %}

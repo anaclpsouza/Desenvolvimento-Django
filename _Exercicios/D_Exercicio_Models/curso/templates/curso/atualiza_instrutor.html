@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+{% block titulo %}Atualizar Instrutor{% endblock %}
+
+{% block conteudo %}
+    <h1 class="mb-3">Atualizar Instrutor</h1>
+
+    <form method="POST">
+        {% csrf_token %}
+        <div class="mb-3">
+            <label for="codigo" class="form-label">Código:</label>
+            <input type="text" id="codigo" name="codigo" value="{{ instrutor.codigo }}" class="form-control" readonly>
+        </div>
+        <div class="mb-3">
+            <label for="nome" class="form-label">Nome:</label>
+            <input type="text" id="nome" name="nome" value="{{ instrutor.nome }}" maxlength="100" class="form-control" required>
+        </div>
+        <div class="mb-3">
+            <label for="idade" class="form-label">Idade:</label>
+            <input type="number" id="idade" name="idade" value="{{ instrutor.idade }}" class="form-control" required>
+        </div>
+        <div class="mb-3">
+            <label for="email" class="form-label">Email:</label>
+            <input type="email" id="email" name="email" value="{{ instrutor.email }}" class="form-control" required>
+        </div>
+        <div class="mb-3">
+            <label for="especialidade" class="form-label">Especialidade:</label>
+            <input type="text" id="especialidade" name="especialidade" value="{{ instrutor.especialidade }}" maxlength="100" class="form-control" required>
+        </div>
+        <div class="mb-3 form-check">
+            <input type="checkbox" id="ativo" name="ativo" class="form-check-input" {% if instrutor.ativo %}checked{% endif %}>
+            <label for="ativo" class="form-check-label">Ativo</label>
+        </div>
+        <div class="mb-3">
+            <label for="curriculo" class="form-label">Currículo:</label>
+            <textarea id="curriculo" name="curriculo" class="form-control" rows="3">{{ instrutor.curriculo|default_if_none:"" }}</textarea>
+        </div>
+        <div class="mb-3">
+            <label for="biografia" class="form-label">Biografia:</label>
+            <textarea id="biografia" name="biografia" class="form-control" rows="3" required>{{ perfil.biografia }}</textarea>
+        </div>
+        <div class="mb-3">
+            <label for="linkedin" class="form-label">LinkedIn:</label>
+            <input type="text" id="linkedin" name="linkedin" value="{{ perfil.linkedin|default_if_none:"" }}" maxlength="200" class="form-control">
+        </div>
+
+        <button type="submit" class="btn btn-primary">Salvar Alterações</button>
+        <a href="{% url 'curso:lista_instrutor' %}" class="btn btn-secondary">Voltar</a>
+    </form>
+{% endblock %}
