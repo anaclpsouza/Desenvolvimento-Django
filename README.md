@@ -12,4 +12,5 @@ Repositório com as atividades e exercícios da disciplina **Tópicos Avançados
   - `C_Exercicio_Template_Basico/` — Exercício de templates básicos, tags e filtros
   - `D_Exercicio_Template_Heranca/` — Exercício de herança de templates e Bootstrap 5
   - `D_Exercicio_Models/` — Exercício de models, relacionamentos e CRUD
+  - `E_Exercicio_DjangoAdmin/` — Exercício de Django Admin e personalizações de `ModelAdmin`
 
