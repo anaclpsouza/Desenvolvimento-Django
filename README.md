@@ -6,6 +6,7 @@ Repositório com as atividades e exercícios da disciplina **Tópicos Avançados
 
 - `A_HelloWorld/` — Projeto inicial
 - `B_Rotas/` — Exemplos de rotas em aula
+- `F_Exemplo_Completo/` — Aplicação exemplo integrando rotas, views, templates com Bootstrap 5, models, CRUD e Django Admin
 - `_Exercicios/`
   - `A_Exercicio_Rotas/` — Exercício de rotas e redirecionamentos
   - `B_Exercicio_Views/` — Exercício de views, formulários e JSON
