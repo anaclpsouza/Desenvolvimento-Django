@@ -32,3 +32,4 @@ urlpatterns = [
     path('api/eventos/', views.api_eventos, name='api_eventos'),
     path('rota-atual/', views.rota_atual, name='rota_atual'),
 ]
+
