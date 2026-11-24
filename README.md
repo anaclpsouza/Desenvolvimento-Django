@@ -15,3 +15,16 @@ Repositório com as atividades e exercícios da disciplina **Tópicos Avançados
   - `D_Exercicio_Models/` — Exercício de models, relacionamentos e CRUD
   - `E_Exercicio_DjangoAdmin/` — Exercício de Django Admin e personalizações de `ModelAdmin`
 
+## Como executar um projeto
+
+Entre na pasta do projeto desejado (onde está o `manage.py`) e execute:
+
+```bash
+pip install django django-bootstrap-v5
+python manage.py migrate
+python manage.py runserver
+```
+
+Depois, acesse `http://127.0.0.1:8000/` no navegador.
+
+
