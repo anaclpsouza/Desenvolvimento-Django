@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+
+{% block titulo %}Início - Eventos Acadêmicos{% endblock %}
+
+{% block cabecalho %}Painel de Eventos Acadêmicos{% endblock %}
+
+{% block conteudo %}
+    <div class="row mb-4">
+        <div class="col-md-4">
+            <div class="card card-resumo mb-3">
+                <div class="card-body">
+                    <h5 class="card-title">Eventos</h5>
+                    <p class="card-text fs-4">{{ total_eventos }} evento{{ total_eventos|pluralize }}</p>
+                    <a href="{% url 'eventos:lista_eventos' %}" class="btn btn-sm btn-primary">Ver Eventos</a>
+                    <a href="{% url 'eventos:cria_evento' %}" class="btn btn-sm btn-success">Novo</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card card-resumo mb-3">
+                <div class="card-body">
+                    <h5 class="card-title">Organizadores</h5>
+                    <p class="card-text fs-4">{{ total_organizadores }} organizador{{ total_organizadores|pluralize:"es" }}</p>
+                    <a href="{% url 'eventos:lista_organizadores' %}" class="btn btn-sm btn-primary">Ver Organizadores</a>
+                    <a href="{% url 'eventos:cria_organizador' %}" class="btn btn-sm btn-success">Novo</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card card-resumo mb-3">
+                <div class="card-body">
+                    <h5 class="card-title">Categorias</h5>
+                    <p class="card-text fs-4">{{ total_categorias }} categoria{{ total_categorias|pluralize }}</p>
+                    <a href="{% url 'eventos:lista_categorias' %}" class="btn btn-sm btn-primary">Ver Categorias</a>
+                    <a href="{% url 'eventos:cria_categoria' %}" class="btn btn-sm btn-success">Nova</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <h3>Próximos Eventos Ativos</h3>
+    <ul class="list-group">
+        {% for evento in proximos_eventos %}
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+                <div>
+                    <a href="{% url 'eventos:consulta_evento' evento.id %}" class="fw-bold text-decoration-none">
+                        {{ evento.titulo|title }}
+                    </a>
+                    <small class="text-muted d-block">
+                        {{ evento.categoria.nome }} | {{ evento.data_evento|date:"d/m/Y" }} | {{ evento.descricao|truncatewords:8 }}
+                    </small>
+                </div>
+                <span class="badge bg-primary rounded-pill">
+                    {% if evento.valor > 0 %}
+                        R$ {{ evento.valor|floatformat:'2g' }}
+                    {% else %}
+                        Gratuito
+                    {% endif %}
+                </span>
+            </li>
+        {% empty %}
+            <li class="list-group-item">Nenhum evento ativo cadastrado.</li>
+        {% endfor %}
+    </ul>
+{% endblock %}
